@@ -26,9 +26,9 @@ func InitializeApiMapping(app *fiber.App) {
 	category.Patch("/:id", middlewares.RequiredAdmin(), controllers.Update)
 
 	topping := v1.Group("/topping", middlewares.RequiredAdmin())
-	topping.Post("/", controllers.CreateTopping)
-	topping.Patch("/:id", controllers.UpdateTopping)
-	topping.Delete("/:id", controllers.DeleteTopping)
+	topping.Post("/", middlewares.RequiredAdmin(), controllers.CreateTopping)
+	topping.Patch("/:id", middlewares.RequiredAdmin(), controllers.UpdateTopping)
+	topping.Delete("/:id", middlewares.RequiredAdmin(), controllers.DeleteTopping)
 
 	product := v1.Group("/product")
 	product.Post("/", middlewares.RequiredAdmin(), controllers.CreateProduct)
@@ -36,7 +36,7 @@ func InitializeApiMapping(app *fiber.App) {
 	product.Delete("/:id", middlewares.RequiredAdmin(), controllers.DeleteProduct)
 
 	productSize := product.Group("/size", middlewares.RequiredAdmin())
-	productSize.Post("/", controllers.CreateProductSize)
+	productSize.Post("/", middlewares.RequiredAdmin(), controllers.CreateProductSize)
 
 	topic := v1.Group("/topic")
 	topic.Post("/", middlewares.RequiredAdmin(), controllers.CreateTopic)
@@ -44,9 +44,9 @@ func InitializeApiMapping(app *fiber.App) {
 	topic.Delete("/:id", middlewares.RequiredAdmin(), controllers.DeleteTopic)
 
 	tag := v1.Group("/tag")
-	tag.Post("/", controllers.CreateTag)
-	tag.Patch("/:id", controllers.UpdateTag)
-	tag.Delete("/:id", controllers.DeleteTag)
+	tag.Post("/", middlewares.RequiredAdmin(), controllers.CreateTag)
+	tag.Patch("/:id", middlewares.RequiredAdmin(), controllers.UpdateTag)
+	tag.Delete("/:id", middlewares.RequiredAdmin(), controllers.DeleteTag)
 
 	post := v1.Group("/post")
 	post.Post("/", middlewares.RequiredAdmin(), controllers.CreatePost)
