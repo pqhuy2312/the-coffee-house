@@ -61,3 +61,15 @@ type FPost struct {
 	Thumbnail string  `json:"thumbnail" validate:"required"`
 	TagId     int     `json:"tagId" validate:"required"`
 }
+
+type FPagination struct {
+	Limit        int         `json:"limit"`
+	Page         int         `json:"page"`
+	Sort         string      `json:"sort"`
+	TotalRows    int         `json:"totalRows"`
+	FirstPage    string      `json:"firstPage"`
+	PreviousPage string      `json:"previousPage"`
+	NextPage     string      `json:"nextPage"`
+	LastPage     string      `json:"lastPage"`
+	Rows         interface{} `json:"rows"`
+}

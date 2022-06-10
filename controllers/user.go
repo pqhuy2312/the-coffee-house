@@ -55,6 +55,8 @@ func Register(c *fiber.Ctx) error {
 func Login(c *fiber.Ctx) error {
 	formData := new(forms.FLogin)
 
+
+
 	if err := c.BodyParser(formData); err != nil {
 		return err
 	}
@@ -108,6 +110,7 @@ func Me(c *fiber.Ctx) error {
 	userRepo := repoimpl.NewUserRepo(db)
 
 	result, _ := userRepo.GetUserById(int(claims["id"].(float64)))
+	
 
 	return c.Status(http.StatusOK).JSON(fiber.Map{
 		"success": true,
